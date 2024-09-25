@@ -3,6 +3,7 @@
 ### Source: https://www.youtube.com/watch?v=K1iu1kXkVoA
 ### Coding with John
 
+### Generic classes
 #### Integer printer (without generics)
 ``` java
 public class IntegerPrinter{ // Class named integer printer
@@ -61,9 +62,56 @@ public class GenericsExample{
 #### Primitaves don't work, only the wrapper classes
 - instead of int use Integer
 
-#### extends keyword (data type filtering)
+#### Bounded generic - extends keyword (data type filtering)
 ```java
 public class Printer <T extends Animal>
 // The type can now only accept animals and not anything else
 // Also any method defined in the Animal class is available for use in the Printer class
 // For example if the Animal class holds a method called eat then you can call it using variableName.eat()
+
+// Use '&' for multiple bounds
+public class Printer <T extends Animal & Serializable>
+// ALways have one class first and the interfaces after
+```
+- Also works with interfaces such as serializable
+
+### Generic methods
+#### Example with one generic parameter
+```java
+private static <T> void shout (T thingToShout){
+    System.out.println(ThingToShout + "!!!!");
+}
+```
+```java
+public static void main (String[] args){
+    // Call the method with any type of data, it automatically detects the data type now
+    shout("John");
+    shout(54.3);
+    shout(new Block());
+}
+#### Example with two generic parameters
+```java 
+private static <T, V> void shout (T thingToShout, V thingToQuestion){ // void can be replaced with a generic type T to return that data type
+    System.out.println(ThingToShout + "!!!!");
+    System.out.println( thingToQuestion + "????");
+
+}
+```
+
+### Wildcards <?>
+
+```java
+public static void main(String[] args){
+    List<Integer> intList = new ArrayList<>()
+    intList.add(3);
+    printList(intList);
+
+    List<Triangle> trianlgeList = new ArrayList<>();
+    triangleList.add(new Triangle());
+    printList(triangleList);
+}
+private static void printList(List<?> mylist) { // the <?> indicates the data type can be anything (eg. Integer, Object...)
+                                                // can also be bounded with extends (eg.<? extends Animal>)    
+    System.out.print();
+}
+
