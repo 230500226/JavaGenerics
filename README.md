@@ -20,7 +20,7 @@ public class IntegerPrinter{ // Class named integer printer
 ``` java
 public class GenericsExample{
     public static void main(Stringp[ args]) {
-        IntegerPrinter printer = IntegerPrinter(23);
+        IntegerPrinter printer = new IntegerPrinter(23);
         printer.print();
     }
 }
@@ -47,4 +47,23 @@ public class Printer <T>{ // The T stands for Type. Ex. Integer, Double, String.
     }
 
 }
+```
+``` java
+public class GenericsExample{
+    public static void main(Stringp[ args]) {
+        Printer<Integer> printer = new Printer<>(23); //<Integer> is specifying the data type to be used in the Printer class
+                                                        // the <> is just an extra step for the same reason
+        printer.print();
+    }
+}
+```
 
+#### Primitaves don't work, only the wrapper classes
+- instead of int use Integer
+
+#### extends keyword (data type filtering)
+```java
+public class Printer <T extends Animal>
+// The type can now only accept animals and not anything else
+// Also any method defined in the Animal class is available for use in the Printer class
+// For example if the Animal class holds a method called eat then you can call it using variableName.eat()
